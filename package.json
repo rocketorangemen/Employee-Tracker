@@ -1,0 +1,25 @@
+{
+  "name": "Employee-Tracker",
+  "version": "1.0.0",
+  "description": "An easy to use command-line application that you can use to build a command-line application to manage a company's employee database, using Node.js, Inquirer, and MySQL.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocketorangemen/Employee-Tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rocketorangemen/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/rocketorangemen/Employee-Tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.0.0",
+    "mysql2": "^2.2.5"
+  }
+}
