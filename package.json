@@ -1,5 +1,5 @@
 {
-  "name": "Employee-Tracker",
+  "name": "employee-tracker",
   "version": "1.0.0",
   "description": "An easy to use command-line application that you can use to build a command-line application to manage a company's employee database, using Node.js, Inquirer, and MySQL.",
   "main": "index.js",

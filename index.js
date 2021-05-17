@@ -93,6 +93,80 @@ function viewEmp() {
   });
 }
 
+// Adds a department to the current list of departments and generates a new unique id
+function addDept() {
+  console.log("Inserting a new department...\n");
+  inquirer
+    .prompt({
+      type: "input",
+      name: "newDep",
+      message: "Enter the new Department name",
+      validate: (newDepInput) => {
+        if (newDepInput) {
+          return true;
+        } else {
+          console.log("Please enter the new Department name");
+          return false;
+        }
+      },
+    })
+    .then((response) => {
+      let query = `INSERT INTO department (name) VALUES ('${response.newDep}')`;
+      connection.query(query);
+      startApp();
+    });
+}
+
+// Adds a new role with all the necessary information
+function addRole() {
+  console.log("Inserting a new role...\n");
+  let query = "SELECT * FROM department";
+  connection.query(query, function (err, res) {
+    if (err) throw err;
+    let depArray = res.map((departments) => departments.name);
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "newTitle",
+          message: "Enter the title of new role",
+          validate: (newTitleInput) => {
+            if (newTitleInput) {
+              return true;
+            } else {
+              console.log("Please enter the title of the new role");
+              return false;
+            }
+          },
+        },
+        {
+          type: "input",
+          name: "newSalary",
+          message: "Enter the salary of the new role",
+          validate: (newSalaryInput) => {
+            if (newSalaryInput) {
+              return true;
+            } else {
+              console.log("Please enter the salary of the new role");
+              return false;
+            }
+          },
+        },
+        {
+          type: "list",
+          name: "newDep",
+          choices: depArray,
+          message: "Select the department of the new role",
+        },
+      ])
+      .then((response) => {
+        connection.query(
+          `INSERT INTO role(title, salary, department_id) VALUES ("${response.newTitle}", "${response.newSalary}", (SELECT id FROM department WHERE name = "${response.newDep}"));`
+        );
+        startApp();
+      });
+  });
+}
 
 // Adds a new employee with all the necessary information
 function addEmp() {
